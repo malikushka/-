@@ -2,8 +2,8 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Интернет_магазин_Черешня"
-             StartupUri="MainWindow.xaml">
+             StartupUri="Информация о пользователях.xaml">
     <Application.Resources>
-         
+        <SolidColorBrush x:Key="HighlightColorBrush" Color="LightGreen" />
     </Application.Resources>
 </Application>

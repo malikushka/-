@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5c0974844a904492ae4b3006bd371197" Name="Diagram1">
+        <EntityTypeShape EntityType="dbModel.Apartment" Width="1.5" PointX="10.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbModel.Client" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbModel.Coordinates" Width="1.5" PointX="10.5" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbModel.Earth" Width="1.5" PointX="10.5" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbModel.House" Width="1.5" PointX="10.5" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbModel.Object" Width="1.5" PointX="12.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbModel.Potrebnost" Width="1.5" PointX="5.25" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbModel.Potrebnost_apartment" Width="1.5" PointX="7.5" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbModel.Potrebnost_earth" Width="1.5" PointX="7.5" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbModel.Potrebnost_house" Width="1.5" PointX="7.5" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbModel.Predlozheniye" Width="1.5" PointX="10.5" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbModel.Realtor" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbModel.sysdiagrams" Width="1.5" PointX="1.125" PointY="2" IsExpanded="true" />
+        <AssociationConnector Association="dbModel.FK_Object_Apartment" ManuallyRouted="false" />
+        <AssociationConnector Association="dbModel.FK_Клиент_Риелтор" ManuallyRouted="false" />
+        <AssociationConnector Association="dbModel.FK_Потребность_Клиент" ManuallyRouted="false" />
+        <AssociationConnector Association="dbModel.FK_Object_Coordinates" ManuallyRouted="false" />
+        <AssociationConnector Association="dbModel.FK_Object_Earth" ManuallyRouted="false" />
+        <AssociationConnector Association="dbModel.FK_Object_House" ManuallyRouted="false" />
+        <AssociationConnector Association="dbModel.FK_Object_Predlozheniye" ManuallyRouted="false" />
+        <AssociationConnector Association="dbModel.FK_potrebnost_apartment_Potrebnost" ManuallyRouted="false" />
+        <AssociationConnector Association="dbModel.FK_Potrebnost_earth_Potrebnost" ManuallyRouted="false" />
+        <AssociationConnector Association="dbModel.FK_Potrebnost_house_Potrebnost" ManuallyRouted="false" />
+        <AssociationConnector Association="dbModel.FK_Predlozheniye_Realtor" ManuallyRouted="false" />
+        <AssociationConnector Association="dbModel.Deal" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

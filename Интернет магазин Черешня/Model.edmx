@@ -1,0 +1,944 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище dbModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Apartment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Ploshchad" Type="int" />
+          <Property Name="Numb rooms" Type="int" />
+          <Property Name="Floor" Type="int" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Otchestvo" Type="nvarchar(max)" />
+          <Property Name="Telephone" Type="int" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="FK_Realtor" Type="int" />
+        </EntityType>
+        <EntityType Name="Coordinates">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Area" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Deal">
+          <Key>
+            <PropertyRef Name="ID_Predlozheniye" />
+            <PropertyRef Name="ID_Potrebnost" />
+          </Key>
+          <Property Name="ID_Predlozheniye" Type="int" Nullable="false" />
+          <Property Name="ID_Potrebnost" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Earth">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Ploshchad" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="House">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Floor" Type="int" />
+          <Property Name="Ploshchad" Type="int" />
+          <Property Name="Numb rooms" Type="int" />
+        </EntityType>
+        <EntityType Name="Object">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="City" Type="nvarchar(max)" />
+          <Property Name="Street" Type="nvarchar(max)" />
+          <Property Name="Address_House" Type="int" />
+          <Property Name="Address_Number" Type="int" />
+          <Property Name="Tip object" Type="nvarchar(max)" />
+          <Property Name="FK_Apartment" Type="int" />
+          <Property Name="FK_Earth" Type="int" />
+          <Property Name="FK_House" Type="int" />
+          <Property Name="FK_Predlozheniye" Type="int" />
+          <Property Name="FK_Coordinates" Type="int" />
+        </EntityType>
+        <EntityType Name="Potrebnost">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Adres" Type="nvarchar(max)" />
+          <Property Name="Min price" Type="int" />
+          <Property Name="Max price" Type="int" />
+          <Property Name="FK_Client" Type="int" />
+          <Property Name="Min_P" Type="int" />
+          <Property Name="Max_P" Type="int" />
+          <Property Name="Min_R" Type="int" />
+          <Property Name="Max_R" Type="int" />
+          <Property Name="Min_F" Type="int" />
+          <Property Name="Max_F" Type="int" />
+          <Property Name="Tip object" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Potrebnost apartment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Min ploshchad" Type="int" />
+          <Property Name="Max ploshchad" Type="int" />
+          <Property Name="Min numb rooms" Type="int" />
+          <Property Name="Max numb rooms" Type="int" />
+          <Property Name="Min floor" Type="int" />
+          <Property Name="Max floor" Type="int" />
+          <Property Name="FK_Potrebnost" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Potrebnost earth">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Max ploshchad" Type="int" />
+          <Property Name="Min ploshchad" Type="int" />
+          <Property Name="FK_Potrebnost" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Potrebnost house">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Min ploshchad" Type="int" />
+          <Property Name="Max ploshchad" Type="int" />
+          <Property Name="Min numb rooms" Type="int" />
+          <Property Name="Max numb rooms" Type="int" />
+          <Property Name="Min floor" Type="int" />
+          <Property Name="Max floor" Type="int" />
+          <Property Name="FK_Potrebnost" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Predlozheniye">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Price" Type="int" />
+          <Property Name="FK_Realtor" Type="int" />
+        </EntityType>
+        <EntityType Name="Realtor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Otchestvo" Type="nvarchar(max)" />
+          <Property Name="Commission" Type="nvarchar(max)" />
+          <Property Name="FK_Potrebnost" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Deal_Potrebnost">
+          <End Role="Potrebnost" Type="Self.Potrebnost" Multiplicity="1" />
+          <End Role="Deal" Type="Self.Deal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Potrebnost">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Deal">
+              <PropertyRef Name="ID_Potrebnost" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deal_Predlozheniye">
+          <End Role="Predlozheniye" Type="Self.Predlozheniye" Multiplicity="1" />
+          <End Role="Deal" Type="Self.Deal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Predlozheniye">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Deal">
+              <PropertyRef Name="ID_Predlozheniye" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Object_Apartment">
+          <End Role="Apartment" Type="Self.Apartment" Multiplicity="0..1" />
+          <End Role="Object" Type="Self.Object" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apartment">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Object">
+              <PropertyRef Name="FK_Apartment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Object_Coordinates">
+          <End Role="Coordinates" Type="Self.Coordinates" Multiplicity="0..1" />
+          <End Role="Object" Type="Self.Object" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Coordinates">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Object">
+              <PropertyRef Name="FK_Coordinates" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Object_Earth">
+          <End Role="Earth" Type="Self.Earth" Multiplicity="0..1" />
+          <End Role="Object" Type="Self.Object" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Earth">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Object">
+              <PropertyRef Name="FK_Earth" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Object_House">
+          <End Role="House" Type="Self.House" Multiplicity="0..1" />
+          <End Role="Object" Type="Self.Object" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="House">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Object">
+              <PropertyRef Name="FK_House" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Object_Predlozheniye">
+          <End Role="Predlozheniye" Type="Self.Predlozheniye" Multiplicity="0..1" />
+          <End Role="Object" Type="Self.Object" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Predlozheniye">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Object">
+              <PropertyRef Name="FK_Predlozheniye" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_potrebnost apartment_Potrebnost">
+          <End Role="Potrebnost" Type="Self.Potrebnost" Multiplicity="1" />
+          <End Role="Potrebnost apartment" Type="Self.Potrebnost apartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Potrebnost">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Potrebnost apartment">
+              <PropertyRef Name="FK_Potrebnost" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Potrebnost earth_Potrebnost">
+          <End Role="Potrebnost" Type="Self.Potrebnost" Multiplicity="1" />
+          <End Role="Potrebnost earth" Type="Self.Potrebnost earth" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Potrebnost">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Potrebnost earth">
+              <PropertyRef Name="FK_Potrebnost" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Potrebnost house_Potrebnost">
+          <End Role="Potrebnost" Type="Self.Potrebnost" Multiplicity="1" />
+          <End Role="Potrebnost house" Type="Self.Potrebnost house" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Potrebnost">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Potrebnost house">
+              <PropertyRef Name="FK_Potrebnost" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Predlozheniye_Realtor">
+          <End Role="Realtor" Type="Self.Realtor" Multiplicity="0..1" />
+          <End Role="Predlozheniye" Type="Self.Predlozheniye" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Realtor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Predlozheniye">
+              <PropertyRef Name="FK_Realtor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Клиент_Риелтор">
+          <End Role="Realtor" Type="Self.Realtor" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Realtor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="FK_Realtor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Потребность_Клиент">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Potrebnost" Type="Self.Potrebnost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Potrebnost">
+              <PropertyRef Name="FK_Client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище dbModelContainer">
+          <EntitySet Name="Apartment" EntityType="Self.Apartment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Coordinates" EntityType="Self.Coordinates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Deal" EntityType="Self.Deal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Earth" EntityType="Self.Earth" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="House" EntityType="Self.House" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Object" EntityType="Self.Object" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Potrebnost" EntityType="Self.Potrebnost" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Potrebnost apartment" EntityType="Self.Potrebnost apartment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Potrebnost earth" EntityType="Self.Potrebnost earth" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Potrebnost house" EntityType="Self.Potrebnost house" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Predlozheniye" EntityType="Self.Predlozheniye" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Realtor" EntityType="Self.Realtor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Deal_Potrebnost" Association="Self.FK_Deal_Potrebnost">
+            <End Role="Potrebnost" EntitySet="Potrebnost" />
+            <End Role="Deal" EntitySet="Deal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deal_Predlozheniye" Association="Self.FK_Deal_Predlozheniye">
+            <End Role="Predlozheniye" EntitySet="Predlozheniye" />
+            <End Role="Deal" EntitySet="Deal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Object_Apartment" Association="Self.FK_Object_Apartment">
+            <End Role="Apartment" EntitySet="Apartment" />
+            <End Role="Object" EntitySet="Object" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Object_Coordinates" Association="Self.FK_Object_Coordinates">
+            <End Role="Coordinates" EntitySet="Coordinates" />
+            <End Role="Object" EntitySet="Object" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Object_Earth" Association="Self.FK_Object_Earth">
+            <End Role="Earth" EntitySet="Earth" />
+            <End Role="Object" EntitySet="Object" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Object_House" Association="Self.FK_Object_House">
+            <End Role="House" EntitySet="House" />
+            <End Role="Object" EntitySet="Object" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Object_Predlozheniye" Association="Self.FK_Object_Predlozheniye">
+            <End Role="Predlozheniye" EntitySet="Predlozheniye" />
+            <End Role="Object" EntitySet="Object" />
+          </AssociationSet>
+          <AssociationSet Name="FK_potrebnost apartment_Potrebnost" Association="Self.FK_potrebnost apartment_Potrebnost">
+            <End Role="Potrebnost" EntitySet="Potrebnost" />
+            <End Role="Potrebnost apartment" EntitySet="Potrebnost apartment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Potrebnost earth_Potrebnost" Association="Self.FK_Potrebnost earth_Potrebnost">
+            <End Role="Potrebnost" EntitySet="Potrebnost" />
+            <End Role="Potrebnost earth" EntitySet="Potrebnost earth" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Potrebnost house_Potrebnost" Association="Self.FK_Potrebnost house_Potrebnost">
+            <End Role="Potrebnost" EntitySet="Potrebnost" />
+            <End Role="Potrebnost house" EntitySet="Potrebnost house" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Predlozheniye_Realtor" Association="Self.FK_Predlozheniye_Realtor">
+            <End Role="Realtor" EntitySet="Realtor" />
+            <End Role="Predlozheniye" EntitySet="Predlozheniye" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Клиент_Риелтор" Association="Self.FK_Клиент_Риелтор">
+            <End Role="Realtor" EntitySet="Realtor" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Потребность_Клиент" Association="Self.FK_Потребность_Клиент">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Potrebnost" EntitySet="Potrebnost" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Apartment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Ploshchad" Type="Int32" />
+          <Property Name="Numb_rooms" Type="Int32" />
+          <Property Name="Floor" Type="Int32" />
+          <NavigationProperty Name="Object" Relationship="Self.FK_Object_Apartment" FromRole="Apartment" ToRole="Object" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Otchestvo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Telephone" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FK_Realtor" Type="Int32" />
+          <NavigationProperty Name="Realtor" Relationship="Self.FK_Клиент_Риелтор" FromRole="Client" ToRole="Realtor" />
+          <NavigationProperty Name="Potrebnost" Relationship="Self.FK_Потребность_Клиент" FromRole="Client" ToRole="Potrebnost" />
+        </EntityType>
+        <EntityType Name="Coordinates">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Area" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Object" Relationship="Self.FK_Object_Coordinates" FromRole="Coordinates" ToRole="Object" />
+        </EntityType>
+        <EntityType Name="Earth">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Ploshchad" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Object" Relationship="Self.FK_Object_Earth" FromRole="Earth" ToRole="Object" />
+        </EntityType>
+        <EntityType Name="House">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Floor" Type="Int32" />
+          <Property Name="Ploshchad" Type="Int32" />
+          <Property Name="Numb_rooms" Type="Int32" />
+          <NavigationProperty Name="Object" Relationship="Self.FK_Object_House" FromRole="House" ToRole="Object" />
+        </EntityType>
+        <EntityType Name="Object">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Street" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address_House" Type="Int32" />
+          <Property Name="Address_Number" Type="Int32" />
+          <Property Name="Tip_object" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FK_Apartment" Type="Int32" />
+          <Property Name="FK_Earth" Type="Int32" />
+          <Property Name="FK_House" Type="Int32" />
+          <Property Name="FK_Predlozheniye" Type="Int32" />
+          <Property Name="FK_Coordinates" Type="Int32" />
+          <NavigationProperty Name="Apartment" Relationship="Self.FK_Object_Apartment" FromRole="Object" ToRole="Apartment" />
+          <NavigationProperty Name="Coordinates" Relationship="Self.FK_Object_Coordinates" FromRole="Object" ToRole="Coordinates" />
+          <NavigationProperty Name="Earth" Relationship="Self.FK_Object_Earth" FromRole="Object" ToRole="Earth" />
+          <NavigationProperty Name="House" Relationship="Self.FK_Object_House" FromRole="Object" ToRole="House" />
+          <NavigationProperty Name="Predlozheniye" Relationship="Self.FK_Object_Predlozheniye" FromRole="Object" ToRole="Predlozheniye" />
+        </EntityType>
+        <EntityType Name="Potrebnost">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Adres" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Min_price" Type="Int32" />
+          <Property Name="Max_price" Type="Int32" />
+          <Property Name="FK_Client" Type="Int32" />
+          <Property Name="Min_P" Type="Int32" />
+          <Property Name="Max_P" Type="Int32" />
+          <Property Name="Min_R" Type="Int32" />
+          <Property Name="Max_R" Type="Int32" />
+          <Property Name="Min_F" Type="Int32" />
+          <Property Name="Max_F" Type="Int32" />
+          <Property Name="Tip_object" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Потребность_Клиент" FromRole="Potrebnost" ToRole="Client" />
+          <NavigationProperty Name="Potrebnost_apartment" Relationship="Self.FK_potrebnost_apartment_Potrebnost" FromRole="Potrebnost" ToRole="Potrebnost_apartment" />
+          <NavigationProperty Name="Potrebnost_earth" Relationship="Self.FK_Potrebnost_earth_Potrebnost" FromRole="Potrebnost" ToRole="Potrebnost_earth" />
+          <NavigationProperty Name="Potrebnost_house" Relationship="Self.FK_Potrebnost_house_Potrebnost" FromRole="Potrebnost" ToRole="Potrebnost_house" />
+          <NavigationProperty Name="Predlozheniye" Relationship="Self.Deal" FromRole="Potrebnost" ToRole="Predlozheniye" />
+        </EntityType>
+        <EntityType Name="Potrebnost_apartment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Min_ploshchad" Type="Int32" />
+          <Property Name="Max_ploshchad" Type="Int32" />
+          <Property Name="Min_numb_rooms" Type="Int32" />
+          <Property Name="Max_numb_rooms" Type="Int32" />
+          <Property Name="Min_floor" Type="Int32" />
+          <Property Name="Max_floor" Type="Int32" />
+          <Property Name="FK_Potrebnost" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Potrebnost" Relationship="Self.FK_potrebnost_apartment_Potrebnost" FromRole="Potrebnost_apartment" ToRole="Potrebnost" />
+        </EntityType>
+        <EntityType Name="Potrebnost_earth">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Max_ploshchad" Type="Int32" />
+          <Property Name="Min_ploshchad" Type="Int32" />
+          <Property Name="FK_Potrebnost" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Potrebnost" Relationship="Self.FK_Potrebnost_earth_Potrebnost" FromRole="Potrebnost_earth" ToRole="Potrebnost" />
+        </EntityType>
+        <EntityType Name="Potrebnost_house">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Min_ploshchad" Type="Int32" />
+          <Property Name="Max_ploshchad" Type="Int32" />
+          <Property Name="Min_numb_rooms" Type="Int32" />
+          <Property Name="Max_numb_rooms" Type="Int32" />
+          <Property Name="Min_floor" Type="Int32" />
+          <Property Name="Max_floor" Type="Int32" />
+          <Property Name="FK_Potrebnost" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Potrebnost" Relationship="Self.FK_Potrebnost_house_Potrebnost" FromRole="Potrebnost_house" ToRole="Potrebnost" />
+        </EntityType>
+        <EntityType Name="Predlozheniye">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="FK_Realtor" Type="Int32" />
+          <NavigationProperty Name="Object" Relationship="Self.FK_Object_Predlozheniye" FromRole="Predlozheniye" ToRole="Object" />
+          <NavigationProperty Name="Realtor" Relationship="Self.FK_Predlozheniye_Realtor" FromRole="Predlozheniye" ToRole="Realtor" />
+          <NavigationProperty Name="Potrebnost" Relationship="Self.Deal" FromRole="Predlozheniye" ToRole="Potrebnost" />
+        </EntityType>
+        <EntityType Name="Realtor">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Otchestvo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Commission" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FK_Potrebnost" Type="Int32" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Клиент_Риелтор" FromRole="Realtor" ToRole="Client" />
+          <NavigationProperty Name="Predlozheniye" Relationship="Self.FK_Predlozheniye_Realtor" FromRole="Realtor" ToRole="Predlozheniye" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Object_Apartment">
+          <End Role="Apartment" Type="Self.Apartment" Multiplicity="0..1" />
+          <End Role="Object" Type="Self.Object" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Apartment">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Object">
+              <PropertyRef Name="FK_Apartment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Клиент_Риелтор">
+          <End Role="Realtor" Type="Self.Realtor" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Realtor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="FK_Realtor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Потребность_Клиент">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Potrebnost" Type="Self.Potrebnost" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Potrebnost">
+              <PropertyRef Name="FK_Client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Object_Coordinates">
+          <End Role="Coordinates" Type="Self.Coordinates" Multiplicity="0..1" />
+          <End Role="Object" Type="Self.Object" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Coordinates">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Object">
+              <PropertyRef Name="FK_Coordinates" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Object_Earth">
+          <End Role="Earth" Type="Self.Earth" Multiplicity="0..1" />
+          <End Role="Object" Type="Self.Object" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Earth">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Object">
+              <PropertyRef Name="FK_Earth" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Object_House">
+          <End Role="House" Type="Self.House" Multiplicity="0..1" />
+          <End Role="Object" Type="Self.Object" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="House">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Object">
+              <PropertyRef Name="FK_House" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Object_Predlozheniye">
+          <End Role="Predlozheniye" Type="Self.Predlozheniye" Multiplicity="0..1" />
+          <End Role="Object" Type="Self.Object" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Predlozheniye">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Object">
+              <PropertyRef Name="FK_Predlozheniye" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_potrebnost_apartment_Potrebnost">
+          <End Role="Potrebnost" Type="Self.Potrebnost" Multiplicity="1" />
+          <End Role="Potrebnost_apartment" Type="Self.Potrebnost_apartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Potrebnost">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Potrebnost_apartment">
+              <PropertyRef Name="FK_Potrebnost" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Potrebnost_earth_Potrebnost">
+          <End Role="Potrebnost" Type="Self.Potrebnost" Multiplicity="1" />
+          <End Role="Potrebnost_earth" Type="Self.Potrebnost_earth" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Potrebnost">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Potrebnost_earth">
+              <PropertyRef Name="FK_Potrebnost" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Potrebnost_house_Potrebnost">
+          <End Role="Potrebnost" Type="Self.Potrebnost" Multiplicity="1" />
+          <End Role="Potrebnost_house" Type="Self.Potrebnost_house" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Potrebnost">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Potrebnost_house">
+              <PropertyRef Name="FK_Potrebnost" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Predlozheniye_Realtor">
+          <End Role="Realtor" Type="Self.Realtor" Multiplicity="0..1" />
+          <End Role="Predlozheniye" Type="Self.Predlozheniye" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Realtor">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Predlozheniye">
+              <PropertyRef Name="FK_Realtor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Deal">
+          <End Role="Potrebnost" Type="Self.Potrebnost" Multiplicity="*" />
+          <End Role="Predlozheniye" Type="Self.Predlozheniye" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="dbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Apartment" EntityType="Self.Apartment" />
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="Coordinates" EntityType="Self.Coordinates" />
+          <EntitySet Name="Earth" EntityType="Self.Earth" />
+          <EntitySet Name="House" EntityType="Self.House" />
+          <EntitySet Name="Object" EntityType="Self.Object" />
+          <EntitySet Name="Potrebnost" EntityType="Self.Potrebnost" />
+          <EntitySet Name="Potrebnost_apartment" EntityType="Self.Potrebnost_apartment" />
+          <EntitySet Name="Potrebnost_earth" EntityType="Self.Potrebnost_earth" />
+          <EntitySet Name="Potrebnost_house" EntityType="Self.Potrebnost_house" />
+          <EntitySet Name="Predlozheniye" EntityType="Self.Predlozheniye" />
+          <EntitySet Name="Realtor" EntityType="Self.Realtor" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_Object_Apartment" Association="Self.FK_Object_Apartment">
+            <End Role="Apartment" EntitySet="Apartment" />
+            <End Role="Object" EntitySet="Object" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Клиент_Риелтор" Association="Self.FK_Клиент_Риелтор">
+            <End Role="Realtor" EntitySet="Realtor" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Потребность_Клиент" Association="Self.FK_Потребность_Клиент">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Potrebnost" EntitySet="Potrebnost" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Object_Coordinates" Association="Self.FK_Object_Coordinates">
+            <End Role="Coordinates" EntitySet="Coordinates" />
+            <End Role="Object" EntitySet="Object" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Object_Earth" Association="Self.FK_Object_Earth">
+            <End Role="Earth" EntitySet="Earth" />
+            <End Role="Object" EntitySet="Object" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Object_House" Association="Self.FK_Object_House">
+            <End Role="House" EntitySet="House" />
+            <End Role="Object" EntitySet="Object" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Object_Predlozheniye" Association="Self.FK_Object_Predlozheniye">
+            <End Role="Predlozheniye" EntitySet="Predlozheniye" />
+            <End Role="Object" EntitySet="Object" />
+          </AssociationSet>
+          <AssociationSet Name="FK_potrebnost_apartment_Potrebnost" Association="Self.FK_potrebnost_apartment_Potrebnost">
+            <End Role="Potrebnost" EntitySet="Potrebnost" />
+            <End Role="Potrebnost_apartment" EntitySet="Potrebnost_apartment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Potrebnost_earth_Potrebnost" Association="Self.FK_Potrebnost_earth_Potrebnost">
+            <End Role="Potrebnost" EntitySet="Potrebnost" />
+            <End Role="Potrebnost_earth" EntitySet="Potrebnost_earth" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Potrebnost_house_Potrebnost" Association="Self.FK_Potrebnost_house_Potrebnost">
+            <End Role="Potrebnost" EntitySet="Potrebnost" />
+            <End Role="Potrebnost_house" EntitySet="Potrebnost_house" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Predlozheniye_Realtor" Association="Self.FK_Predlozheniye_Realtor">
+            <End Role="Realtor" EntitySet="Realtor" />
+            <End Role="Predlozheniye" EntitySet="Predlozheniye" />
+          </AssociationSet>
+          <AssociationSet Name="Deal" Association="Self.Deal">
+            <End Role="Potrebnost" EntitySet="Potrebnost" />
+            <End Role="Predlozheniye" EntitySet="Predlozheniye" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище dbModelContainer" CdmEntityContainer="dbEntities">
+          <EntitySetMapping Name="Apartment">
+            <EntityTypeMapping TypeName="dbModel.Apartment">
+              <MappingFragment StoreEntitySet="Apartment">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Ploshchad" ColumnName="Ploshchad" />
+                <ScalarProperty Name="Numb_rooms" ColumnName="Numb rooms" />
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="dbModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Otchestvo" ColumnName="Otchestvo" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FK_Realtor" ColumnName="FK_Realtor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Coordinates">
+            <EntityTypeMapping TypeName="dbModel.Coordinates">
+              <MappingFragment StoreEntitySet="Coordinates">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Earth">
+            <EntityTypeMapping TypeName="dbModel.Earth">
+              <MappingFragment StoreEntitySet="Earth">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Ploshchad" ColumnName="Ploshchad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="House">
+            <EntityTypeMapping TypeName="dbModel.House">
+              <MappingFragment StoreEntitySet="House">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
+                <ScalarProperty Name="Ploshchad" ColumnName="Ploshchad" />
+                <ScalarProperty Name="Numb_rooms" ColumnName="Numb rooms" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Object">
+            <EntityTypeMapping TypeName="dbModel.Object">
+              <MappingFragment StoreEntitySet="Object">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="Address_House" ColumnName="Address_House" />
+                <ScalarProperty Name="Address_Number" ColumnName="Address_Number" />
+                <ScalarProperty Name="Tip_object" ColumnName="Tip object" />
+                <ScalarProperty Name="FK_Apartment" ColumnName="FK_Apartment" />
+                <ScalarProperty Name="FK_Earth" ColumnName="FK_Earth" />
+                <ScalarProperty Name="FK_House" ColumnName="FK_House" />
+                <ScalarProperty Name="FK_Predlozheniye" ColumnName="FK_Predlozheniye" />
+                <ScalarProperty Name="FK_Coordinates" ColumnName="FK_Coordinates" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Potrebnost">
+            <EntityTypeMapping TypeName="dbModel.Potrebnost">
+              <MappingFragment StoreEntitySet="Potrebnost">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="Min_price" ColumnName="Min price" />
+                <ScalarProperty Name="Max_price" ColumnName="Max price" />
+                <ScalarProperty Name="FK_Client" ColumnName="FK_Client" />
+                <ScalarProperty Name="Min_P" ColumnName="Min_P" />
+                <ScalarProperty Name="Max_P" ColumnName="Max_P" />
+                <ScalarProperty Name="Min_R" ColumnName="Min_R" />
+                <ScalarProperty Name="Max_R" ColumnName="Max_R" />
+                <ScalarProperty Name="Min_F" ColumnName="Min_F" />
+                <ScalarProperty Name="Max_F" ColumnName="Max_F" />
+                <ScalarProperty Name="Tip_object" ColumnName="Tip object" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Potrebnost_apartment">
+            <EntityTypeMapping TypeName="dbModel.Potrebnost_apartment">
+              <MappingFragment StoreEntitySet="Potrebnost apartment">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Min_ploshchad" ColumnName="Min ploshchad" />
+                <ScalarProperty Name="Max_ploshchad" ColumnName="Max ploshchad" />
+                <ScalarProperty Name="Min_numb_rooms" ColumnName="Min numb rooms" />
+                <ScalarProperty Name="Max_numb_rooms" ColumnName="Max numb rooms" />
+                <ScalarProperty Name="Min_floor" ColumnName="Min floor" />
+                <ScalarProperty Name="Max_floor" ColumnName="Max floor" />
+                <ScalarProperty Name="FK_Potrebnost" ColumnName="FK_Potrebnost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Potrebnost_earth">
+            <EntityTypeMapping TypeName="dbModel.Potrebnost_earth">
+              <MappingFragment StoreEntitySet="Potrebnost earth">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Max_ploshchad" ColumnName="Max ploshchad" />
+                <ScalarProperty Name="Min_ploshchad" ColumnName="Min ploshchad" />
+                <ScalarProperty Name="FK_Potrebnost" ColumnName="FK_Potrebnost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Potrebnost_house">
+            <EntityTypeMapping TypeName="dbModel.Potrebnost_house">
+              <MappingFragment StoreEntitySet="Potrebnost house">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Min_ploshchad" ColumnName="Min ploshchad" />
+                <ScalarProperty Name="Max_ploshchad" ColumnName="Max ploshchad" />
+                <ScalarProperty Name="Min_numb_rooms" ColumnName="Min numb rooms" />
+                <ScalarProperty Name="Max_numb_rooms" ColumnName="Max numb rooms" />
+                <ScalarProperty Name="Min_floor" ColumnName="Min floor" />
+                <ScalarProperty Name="Max_floor" ColumnName="Max floor" />
+                <ScalarProperty Name="FK_Potrebnost" ColumnName="FK_Potrebnost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Predlozheniye">
+            <EntityTypeMapping TypeName="dbModel.Predlozheniye">
+              <MappingFragment StoreEntitySet="Predlozheniye">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="FK_Realtor" ColumnName="FK_Realtor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Realtor">
+            <EntityTypeMapping TypeName="dbModel.Realtor">
+              <MappingFragment StoreEntitySet="Realtor">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Otchestvo" ColumnName="Otchestvo" />
+                <ScalarProperty Name="Commission" ColumnName="Commission" />
+                <ScalarProperty Name="FK_Potrebnost" ColumnName="FK_Potrebnost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="dbModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Deal" TypeName="dbModel.Deal" StoreEntitySet="Deal">
+            <EndProperty Name="Potrebnost">
+              <ScalarProperty Name="ID" ColumnName="ID_Potrebnost" />
+            </EndProperty>
+            <EndProperty Name="Predlozheniye">
+              <ScalarProperty Name="ID" ColumnName="ID_Predlozheniye" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

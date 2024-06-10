@@ -3,88 +3,250 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Интернет_магазин_Черешня"
         mc:Ignorable="d"
-        Title="Информация_о_пользователях" Height="450" Width="745">
-    <DockPanel>
-        <!--Навигационная линия-->
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="#cccc99">
-            <Button BorderBrush="Transparent" Background="#cccc99" Content="Главное" Margin="10" Width="100"/>
-            <Button BorderBrush="Transparent" Background="#cccc99" Content="Каталог" Margin="10" Width="100"/>
-            <Button BorderBrush="Transparent" Background="#cccc99" Content="Новости" Margin="10" Width="100"/>
-            <Button BorderBrush="Transparent" Background="#cccc99" Content="О нас" Margin="10" Width="100"/>
-            <Button BorderBrush="Transparent" Background="#cccc99" Content="Помощь" Margin="10" Width="100"/>
-            <TextBlock Text="+7(998) 511-89-20" Margin="10" Width="100" Height="15" />
-        </StackPanel>
-        <!--Меню-->
-        <Border Background="#cccc99" CornerRadius="10" Margin="10,10,0,170" Width="153" HorizontalAlignment="Left">
-            <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Height="205">
-            <Button BorderBrush="Transparent" Background="#cccc99" HorizontalContentAlignment="Left" Content="Пользователи" Margin="10"/>
-            <Button BorderBrush="Transparent" Background="#cccc99" HorizontalContentAlignment="Left" Content="Товары" Margin="10" />
-            <Button BorderBrush="Transparent" Background="#cccc99" HorizontalContentAlignment="Left" Content="Пункт выдачи" Margin="10" />
-            <Button BorderBrush="Transparent" Background="#cccc99" HorizontalContentAlignment="Left" Content="Заказы пользователей" Margin="10" />
-            <Button BorderBrush="Transparent" Background="#cccc99" HorizontalContentAlignment="Left" Content="Заказ товара" Margin="10" />
-        </StackPanel>
-        </Border>
-        <!--Поисковая строка-->
-        <DockPanel Height="60" VerticalAlignment="Top" Margin="15">
-            <TextBox Text="Задайте поисковый запрос" Margin="0,0,0,40" Width="502" Height="20" Foreground="#828282"/>
-            <Button Content="Поиск" Margin="0,0,0,40" Width="50" Height="20" Background="White"/>
-            <Label Content="Все пользователи" Height="28" Width="110" Margin="-1000,30,0,0"/>
-            <Button Width="20" Height="20" Margin="-100 30 80 0">
-                <Image Source="file:///C:/Users/user/Downloads/%D0%BA%D0%B0%D1%80%D0%B0%D0%BD%D0%B4%D0%B0%D1%88.webp"/>
-            </Button>
-            <Button Width="20" Height="20" Margin="-65 30 45 0">
-                <Image Source="https://i.ebayimg.com/00/s/MTYwMFgxMTMx/z/vgwAAOSwIFhfm8CM/$_57.JPG" Width="16" Height="19"/>
-            </Button>
-            <Button Width="20" Height="20" Margin="-45 30 0 0">
-                <Image Source="https://thumbs.dreamstime.com/b/значок-удаления-100733746.jpg" Width="16" Height="22"/>
-            </Button>
-        </DockPanel>
-        <!--Таблица-->
-        <StackPanel HorizontalAlignment="Center" Width="550" Height="146" Margin="-575,0,10,100">
-            <!--Название столбцов-->
-            <Border BorderBrush="#828282" BorderThickness="1">
-                <WrapPanel Background="#cccc99">
-                    <Label Content="ФИО" Margin="15 5 0 5" FontWeight="Bold"/>
-                    <Label Content="Email" Margin="100 5 0 5" FontWeight="Bold"/>
-                    <Label Content="Пароль" Margin="100 5 0 5" FontWeight="Bold"/>
-                    <Label Content="Телефон" Margin="100 5 0 5" FontWeight="Bold"/>
-                </WrapPanel>
+        Title="Информация_о_пользователях" Height="480" Width="800" MinWidth="700">
+    <Window.Resources>
+        <Style x:Key="CustomLabelStyle" TargetType="Label">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Background" Value="#a8d8ff"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="5,6,67,347"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Label">
+                        <Border CornerRadius="5" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="NoChangeButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <ContentPresenter Content="{TemplateBinding Content}"
+                                            HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                            VerticalAlignment="{TemplateBinding VerticalAlignment}" />
+                            <Image x:Name="ButtonImage"
+                                   Source="path_to_your_image.png"
+                                   HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Stretch"
+                                  
+                                   SnapsToDevicePixels="True"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <!-- Отключаем изменение при наведении мыши -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="Transparent"/>
+                            </Trigger>
+                            <!-- Отключаем изменение при нажатии -->
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="Transparent"/>
+                            </Trigger>
+                            <!-- Отключаем изменение при отключении кнопки -->
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="CustomButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Blue"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" 
+                          BorderThickness="{TemplateBinding BorderThickness}" 
+                          BorderBrush="{TemplateBinding BorderBrush}" 
+                          CornerRadius="5"
+                          Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="DarkBlue"/>
+                                <Setter TargetName="border" Property="BorderBrush" Value="DarkBlue"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <ScrollViewer  VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border
+              Grid.Column="0"
+              Background="Blue"
+              CornerRadius="10"
+              Margin="10"
+              Width="100"
+              HorizontalAlignment="Left"
+              VerticalAlignment="Top">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Top">
+                    <StackPanel.Resources>
+                        <Style TargetType="Button">
+                            <Setter Property="BorderBrush" Value="Transparent"/>
+                            <Setter Property="Background" Value="#cccc99"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                            <Setter Property="Margin" Value="10"/>
+                        </Style>
+                    </StackPanel.Resources>
+                    <Button Content="Риелторы" Style="{StaticResource CustomButtonStyle}" Foreground="White"/>
+                    <Button Content="Клиенты" Style="{StaticResource CustomButtonStyle}" Foreground="White" Click="Button_Click"/>
+                    <Button Content="Потребности" Style="{StaticResource CustomButtonStyle}" Foreground="White" Click="Button_Click_1"/>
+                    <Button Content="Предложения" Style="{StaticResource CustomButtonStyle}" Foreground="White" Click="Button_Click_2"/>
+                </StackPanel>
             </Border>
-            <!--Содержимое-->
-            <Border BorderThickness="0.3" BorderBrush="#828282">
+
+            <StackPanel Grid.Column="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBox x:Name="SearchText" Grid.Column="0" Margin="19,10,10,10" Foreground="#828282" Text="{Binding SearchQuery, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Button Grid.Column="1" Content="Поиск" Margin="3" Background="White" Style="{StaticResource CustomButtonStyle}" Command="{Binding SearchCommand}" Click="Button_Click_3"/>
+                    <Label Grid.Column="0" Grid.Row="1" Margin="19,0,10,0" Height="30"  Style="{StaticResource CustomLabelStyle}"  x:Name="ErrorMessageLabel"/>
+                </Grid>
                 <DockPanel>
-                    <TextBlock Margin="5 5 0 5" Width="122" Background="#D9DDDC"/>
-                    <TextBlock Margin="15 5 0 5" Width="122" Background="#D9DDDC"/>
-                    <TextBlock Margin="15 5 0 5" Width="122" Background="#D9DDDC"/>
-                    <TextBlock Margin="15 5 0 5" Width="122" Background="#D9DDDC"/>
-            </DockPanel>
-            </Border>
-            <Border BorderThickness="0.3" BorderBrush="#828282">
-                <DockPanel>
-                    <TextBlock Margin="5 5 0 5" Width="122" Background="#D9DDDC"/>
-                    <TextBlock Margin="15 5 0 5" Width="122" Background="#D9DDDC"/>
-                    <TextBlock Margin="15 5 0 5" Width="122" Background="#D9DDDC"/>
-                    <TextBlock Margin="15 5 0 5" Width="122" Background="#D9DDDC"/>
-            </DockPanel>
+                    <Button x:Name="Add" DockPanel.Dock="Left" Margin="20 10 0 0" Content="Добавить" Style="{StaticResource CustomButtonStyle}" Foreground="White" Click="Add_Click"/>
+                    <Button x:Name="Change" DockPanel.Dock="Left" Margin="10 10 0 0" Content="Изменить" Style="{StaticResource CustomButtonStyle}" Foreground="White" Click="Change_Click"/>
+                    <Button x:Name="Delete" DockPanel.Dock="Left" Margin="10 10 0 0" Content="Удалить" Style="{StaticResource CustomButtonStyle}" Foreground="White" Click="Delete_Click"/>
+                    <Button  x:Name="Update" DockPanel.Dock="Left" Margin="10 10 0 0" Content="Обновить" Style="{StaticResource CustomButtonStyle}" Foreground="White" Click="Update_Click"/>
+                    <TextBox x:Name="RealtorId" Height="30" Width="25"  PreviewTextInput="RealtorId_PreviewTextInput" HorizontalAlignment="Left" Margin="10 10 0 0"/>
+                    <Button Background="White" BorderBrush="White"  Margin="10 0 0 -10"  Style="{StaticResource NoChangeButtonStyle}" Width="116" >
+                        <Image Source="C:\Users\user\Downloads\logo.png" DockPanel.Dock="Left" Stretch="None" Width="94" />
+                    </Button>
+                    <Button  x:Name="Up" DockPanel.Dock="Left" Margin="10 10 0 0" Content="Обновить" Style="{StaticResource NoChangeButtonStyle}" Foreground="White" Background="White"/>
+                </DockPanel>
+                <Border  BorderThickness="1" Margin="10">
+                    <Grid>
+                        <!--<Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>-->
+                        <!--<Grid Grid.Column="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>-->
+                        <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" ItemsSource="{Binding РиелторList}" Background="#F5F5DC" >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Id" Binding="{Binding ID}" Width="20"/>
+                                <DataGridTemplateColumn Header="Фамилия" Width="350">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Surname}" Margin="2" x:Name="Фамилия"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="Имя" Width="350">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Grid Grid.Column="1">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="{Binding Name}" Margin="2" x:Name="Имя"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="Отчество" Width="350">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Otchestvo}" Margin="2" x:Name="Отчество"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="Комиссия" Width="350">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Grid Grid.Column="3">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="{Binding Commission}" Margin="2" x:Name="Комиссия"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                            <!--<DataGrid.Columns >
+                                    <DataGridTextColumn Header="Id" Binding="{Binding ID}"   Width="20" />
+                                    <DataGridTextColumn Header="Фамилия" Binding="{Binding Surname}" Width="130"/>
+                                    <DataGridTextColumn Header="Имя" Binding="{Binding  Name}" Width="130"/>
+                                    <DataGridTextColumn Header="Отчество" Binding="{Binding Otchestvo}" Width="130"/>
+                                    <DataGridTextColumn Header="Комиссия" Binding="{Binding Commission}" Width="130"/>
+                                </DataGrid.Columns>-->
+                        </DataGrid>
+                        <!--<Label Content="ФИО" Style="{StaticResource CustomLabelStyle}" Margin="10,1,0,352"/>
+                            <TextBlock Name="FIOTextBox0" Grid.Column="0" Margin="10,32,0,313" Text="{Binding ПользователиArray[0].ФИО}" PreviewKeyDown="TextBox_PreviewKeyDown"/>
+                            <TextBox Name="FIOTextBox1" Grid.Column="0" Margin="10,62,0,283" Text="{Binding ПользователиArray[1].ФИО}" PreviewKeyDown="FIOTextBox1_PreviewKeyDown"/>
+                            <TextBox Name="FIOTextBox2" Grid.Column="0" Margin="10,92,0,253" Text="{Binding ПользователиArray[2].ФИО}" PreviewKeyDown="FIOTextBox2_PreviewKeyDown"/>
+                            <TextBox Name="FIOTextBox3" Grid.Column="0" Margin="10,122,0,223" Text="{Binding ПользователиArray[3].ФИО}" PreviewKeyDown="FIOTextBox3_PreviewKeyDown" KeyUp="TextBox_KeyUp"/>
+                            <TextBox Name="FIOTextBox4" Grid.Column="0" Margin="10,152,0,193" Text="{Binding NewUserFIO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewKeyDown="FIOTextBox11_KeyDown" KeyUp="TextBox_KeyUp"/>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="Email" Margin="10,1,0,352" Style="{StaticResource CustomLabelStyle}"/>
+                            <TextBox x:Name="EmailTextBox0" Grid.Column="0" Margin="10,32,0,313" Text="{Binding ПользователиArray[0].Email}" PreviewKeyDown="TextBox_PreviewKeyDown" />
+                            <TextBox x:Name="EmailTextBox1" Grid.Column="0" Margin="10,62,0,283" Text="{Binding ПользователиArray[1].Email}"  PreviewKeyDown="FIOTextBox1_PreviewKeyDown" />
+                            <TextBox x:Name="EmailTextBox2" Grid.Column="0" Margin="10,92,0,253" Text="{Binding ПользователиArray[2].Email}"  PreviewKeyDown="FIOTextBox2_PreviewKeyDown"/>
+                            <TextBox x:Name="EmailTextBox3" Grid.Column="0"  Margin="10,122,0,223"  Text="{Binding ПользователиArray[3].Email}" PreviewKeyDown="FIOTextBox3_PreviewKeyDown" KeyUp="TextBox_KeyUp"/>
+                            <TextBox x:Name="EmailTextBox4" Grid.Column="0"  Margin="10,152,0,193"  Text="{Binding NewUserFIO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewKeyDown="FIOTextBox11_KeyDown" />
+                        </Grid>
+                        <Grid Grid.Column="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="Номер товара" Margin="10,1,0,352" Style="{StaticResource CustomLabelStyle}"/>
+                            <TextBox x:Name="OrderNumberTextBox0" Grid.Column="0" Margin="10,32,0,313" Text="{Binding ПользователиArray[0].Номер_заказа}" PreviewKeyDown="TextBox_PreviewKeyDown"/>
+                            <TextBox x:Name="OrderNumberTextBox1" Grid.Column="0" Margin="10,62,0,283" Text="{Binding ПользователиArray[1].Номер_заказа}"  PreviewKeyDown="FIOTextBox1_PreviewKeyDown"/>
+                            <TextBox x:Name="OrderNumberTextBox2" Grid.Column="0" Margin="10,92,0,253" Text="{Binding ПользователиArray[2].Номер_заказа}"  PreviewKeyDown="FIOTextBox2_PreviewKeyDown"/>
+                            <TextBox x:Name="OrderNumberTextBox3" Grid.Column="0" Margin="10,122,0,223" Text="{Binding ПользователиArray[3].Номер_заказа}" PreviewKeyDown="FIOTextBox3_PreviewKeyDown" KeyUp="TextBox_KeyUp"/>
+                            <TextBox x:Name="OrderNumberTextBox4" Grid.Column="0" Margin="10,152,0,193"  Text="{Binding NewUserFIO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewKeyDown="FIOTextBox11_KeyDown"/>
+                        </Grid>
+                        <Grid Grid.Column="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label  Content="Телефон" Margin="10,1,0,352" Style="{StaticResource CustomLabelStyle}"/>
+                            <TextBox x:Name="PhoneTextBox0" Grid.Column="0" Margin="10,32,0,313" Text="{Binding ПользователиArray[0].Телефон}" PreviewKeyDown="TextBox_PreviewKeyDown"/>
+                            <TextBox x:Name="PhoneTextBox1" Grid.Column="0" Margin="10,62,0,283" Text="{Binding ПользователиArray[1].Телефон}"  PreviewKeyDown="FIOTextBox1_PreviewKeyDown"/>
+                            <TextBox x:Name="PhoneTextBox2" Grid.Column="0" Margin="10,92,0,253" Text="{Binding ПользователиArray[2].Телефон}"  PreviewKeyDown="FIOTextBox2_PreviewKeyDown"/>
+                            <TextBox x:Name="PhoneTextBox3" Grid.Column="0" Margin="10,122,0,223" Text="{Binding ПользователиArray[3].Телефон}" PreviewKeyDown="FIOTextBox3_PreviewKeyDown" KeyUp="TextBox_KeyUp"/>
+                            <TextBox x:Name="PhoneTextBox4" Grid.Column="0" Margin="10,152,0,193" Text="{Binding NewUserFIO, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewKeyDown="FIOTextBox11_KeyDown"/>-->
+                    </Grid>
+                    <!--</Grid>-->
                 </Border>
-            <Border BorderThickness="0.3" BorderBrush="#828282"> 
-            <DockPanel>
-                    <TextBlock Margin="5 5 0 5" Width="122" Background="#D9DDDC"/>
-                    <TextBlock Margin="15 5 0 5" Width="122" Background="#D9DDDC"/>
-                    <TextBlock Margin="15 5 0 5" Width="122" Background="#D9DDDC"/>
-                    <TextBlock Margin="15 5 0 5" Width="122" Background="#D9DDDC"/>
-            </DockPanel>
-            </Border>
-            <Border BorderThickness="0.3" BorderBrush="#828282">
-                <DockPanel>
-                    <TextBlock Margin="5 5 0 5" Width="122" Background="#D9DDDC"/>
-                    <TextBlock Margin="15 5 0 5" Width="122" Background="#D9DDDC"/>
-                    <TextBlock Margin="15 5 0 5" Width="122" Background="#D9DDDC"/>
-                    <TextBlock Margin="15 5 0 5" Width="122" Background="#D9DDDC"/>
-            </DockPanel>
-            </Border>
-        </StackPanel>
-    </DockPanel>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
 </Window>
